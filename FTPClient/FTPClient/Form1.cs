@@ -12,7 +12,6 @@ namespace FTPClient
     public partial class Form1 : Form
     {
         private FtpClient client;
-
         public Form1()
         {
             InitializeComponent();
@@ -25,24 +24,12 @@ namespace FTPClient
             TreeNode rootNode = new TreeNode("C:\\");
             localTreeView.Nodes.Add(rootNode);
 
-            rootNode.Nodes.Add(new TreeNode()); // Add dummy node to make it expandable
-
+            rootNode.Nodes.Add(new TreeNode());
             rootNode.Expand();
         }
-
-        private void localTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node.Nodes.Count > 0 && e.Node.Nodes[0].Text == string.Empty)
-            {
-                e.Node.Nodes.Clear();
-                LoadLocalDirectoryNodes(e.Node);
-            }
-        }
-
         private void LoadLocalDirectoryNodes(TreeNode node)
         {
             string path = node.FullPath;
-
             try
             {
                 string[] directories = Directory.GetDirectories(path);
@@ -68,50 +55,14 @@ namespace FTPClient
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void localTreeView_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            txtLocalPath.Text = localTreeView.SelectedNode.FullPath;
-        }
-
-        private void remoteTreeView_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            txtRemotePath.Text = remoteTreeView.SelectedNode.FullPath;
-        }
-
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-            string host = txtHost.Text;
-            string user = txtUsername.Text;
-            string pass = txtPassword.Text;
-
-            client = new FtpClient(host)
-            {
-                Credentials = new NetworkCredential(user, pass)
-            };
-
-            try
-            {
-                client.Connect();
-                MessageBox.Show("Connected successfully!");
-                LoadDirectoryTree("/");
-                txtRemotePath.Text = "/";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error connecting to server: " + ex.Message);
-            }
-        }
-
-        private void LoadDirectoryTree(string path)
+        private void LoadRemoteTreeView(string path)
         {
             remoteTreeView.Nodes.Clear();
             var rootNode = new TreeNode(path);
             remoteTreeView.Nodes.Add(rootNode);
-            LoadDirectoryNodes(rootNode);
+            LoadRemoteDirectoryNodes(rootNode);
         }
-
-        private void LoadDirectoryNodes(TreeNode node)
+        private void LoadRemoteDirectoryNodes(TreeNode node)
         {
             string path = node.FullPath;
 
@@ -125,46 +76,101 @@ namespace FTPClient
                 node.Nodes.Add(childNode);
             }
         }
-
+        private void localTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.Nodes.Count > 0 && e.Node.Nodes[0].Text == string.Empty)
+            {
+                e.Node.Nodes.Clear();
+                LoadLocalDirectoryNodes(e.Node);
+            }
+        }
+        private void localTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            txtLocalPath.Text = localTreeView.SelectedNode.FullPath;
+        }
         private void remoteTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node.Nodes[0].Text == "Loading...")
             {
                 e.Node.Nodes.Clear();
-                LoadDirectoryNodes(e.Node);
+                LoadRemoteDirectoryNodes(e.Node);
             }
         }
+        private void remoteTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            txtRemotePath.Text = remoteTreeView.SelectedNode.FullPath;
+        }
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            string host = txtHost.Text;
+            string user = txtUsername.Text;
+            string pass = txtPassword.Text;
+            try
+            {
+                client = new FtpClient(host)
+                {
+                    Credentials = new NetworkCredential(user, pass)
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error authenticating: " + ex.Message);
+            }
 
+            try
+            {
+                client.Connect();
+                EnableButton(true);
+                MessageBox.Show("Connected successfully!");
+                LoadRemoteTreeView("/");
+                txtRemotePath.Text = "/";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error connecting: " + ex.Message);
+            }
+        }
         private async void btnDownload_Click(object sender, EventArgs e)
         {
             if (remoteTreeView.SelectedNode == null)
             {
-                MessageBox.Show("Please select a file on the FTP server.");
+                MessageBox.Show("Please select a file or directory on the FTP server.");
                 return;
             }
 
             string remotePath = remoteTreeView.SelectedNode.FullPath;
             string localPath = localTreeView.SelectedNode.FullPath;
-            string fileName = Path.GetFileName(remotePath); // Lấy tên tệp tin từ đường dẫn
-
-            string destinationPath = Path.Combine(localPath, fileName); // Kết hợp đường dẫn thư mục đích và tên tệp tin
 
             try
             {
-                await Task.Run(() => client.DownloadFile(destinationPath, remotePath, FtpLocalExists.Overwrite, FtpVerify.Retry));
-                MessageBox.Show("Download completed!");
-
-                TreeNode parentNode = remoteTreeView.SelectedNode.Parent;
-                if (parentNode != null)
+                if (remoteTreeView.SelectedNode.Nodes.Count > 0)
                 {
-                    parentNode.Nodes.Clear();
-                    LoadDirectoryNodes(parentNode);
+                    string folderName = Path.GetFileName(remotePath.Substring(remotePath.LastIndexOf("\\") + 1));
+                    string destinationPath = Path.Combine(localPath, folderName);
+
+                    if (!Directory.Exists(destinationPath))
+                    {
+                        Directory.CreateDirectory(destinationPath);
+                    }
+
+                    await Task.Run(() => client.DownloadDirectory(destinationPath, remotePath, FtpFolderSyncMode.Update, FtpLocalExists.Overwrite, FtpVerify.Retry));
                 }
-                TreeNode localParentNode = localTreeView.SelectedNode.Parent;
+                else
+                {
+                    string fileName = Path.GetFileName(remotePath);
+                    string destinationPath = Path.Combine(localPath, fileName);
+
+                    await Task.Run(() => client.DownloadFile(destinationPath, remotePath, FtpLocalExists.Overwrite, FtpVerify.Retry));
+                }
+
+                MessageBox.Show("Download completed!");
+                //load
+                TreeNode localParentNode = localTreeView.SelectedNode;
                 if (localParentNode != null)
                 {
                     localParentNode.Nodes.Clear();
                     LoadLocalDirectoryNodes(localParentNode);
+                    LoadLocalTreeView();
                 }
             }
             catch (FtpCommandException ex)
@@ -176,7 +182,6 @@ namespace FTPClient
                 MessageBox.Show($"Error while creating directories: {ex.InnerException?.Message}");
             }
         }
-
         private async void btnUpload_Click(object sender, EventArgs e)
         {
             if (remoteTreeView.SelectedNode == null)
@@ -186,19 +191,27 @@ namespace FTPClient
             }
 
             string localPath = localTreeView.SelectedNode.FullPath;
-            string remotePath = remoteTreeView.SelectedNode.FullPath + "/" + Path.GetFileName(localPath);
-
+            string remotePath = remoteTreeView.SelectedNode.FullPath;
             try
             {
-                await Task.Run(() => client.UploadFile(localPath, remotePath, FtpRemoteExists.Overwrite, true));
+                if (localPath.Contains("."))
+                {
+                    remotePath += "/" + Path.GetFileName(localPath);
+                    await Task.Run(() => client.UploadFile(localPath, remotePath, FtpRemoteExists.Overwrite, true));
+                }
+                else
+                {
+                    remotePath += "/" + Path.GetFileName(localPath.Substring(localPath.LastIndexOf("\\") + 1));
+                    await Task.Run(() => client.UploadDirectory(localPath, remotePath, FtpFolderSyncMode.Update, FtpRemoteExists.Overwrite, FtpVerify.Retry));
+                }
+
                 MessageBox.Show("Upload completed!");
 
                 TreeNode parentNode = remoteTreeView.SelectedNode;
-
                 if (parentNode != null)
                 {
                     parentNode.Nodes.Clear();
-                    LoadDirectoryNodes(parentNode);
+                    LoadRemoteDirectoryNodes(parentNode);
                 }
             }
             catch (FtpCommandException ex)
@@ -210,7 +223,6 @@ namespace FTPClient
                 MessageBox.Show($"Error while creating directories: {ex.InnerException?.Message}");
             }
         }
-
         private void btnCreateDirectory_Click(object sender, EventArgs e)
         {
             string directoryName = txtNewDir.Text.Trim();
@@ -243,7 +255,6 @@ namespace FTPClient
                 MessageBox.Show($"Error creating directory: {ex.Message}");
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (remoteTreeView.SelectedNode == null)
@@ -261,18 +272,45 @@ namespace FTPClient
                     MessageBox.Show("Please delete all files and subdirectories before deleting this directory.");
                     return;
                 }
+                else if (remotePath.Contains("."))
+                {
+                    if (MessageBox.Show("Do you really want to delete this file?",
+                       "Delete File",
+                       MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        client.DeleteFile(remotePath);
+                        MessageBox.Show("File deleted successfully!");
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("Do you really want to delete this folder?",
+                      "Delete Folder",
+                      MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        client.DeleteDirectory(remotePath);
+                        MessageBox.Show("Directory deleted successfully!");
+                    }
+                    else
+                    {
+                        return;
+                    }
 
-                client.DeleteDirectory(remotePath);
-                MessageBox.Show("Directory deleted successfully!");
-
+                }
                 remoteTreeView.SelectedNode.Remove();
+                remoteTreeView.Refresh();
             }
             catch (FtpCommandException ex)
             {
-                MessageBox.Show($"Error deleting directory: {ex.Message}");
+                MessageBox.Show($"Error deleting: {ex.Message}");
             }
         }
-
         private void btnRename_Click(object sender, EventArgs e)
         {
             if (remoteTreeView.SelectedNode == null)
@@ -289,11 +327,15 @@ namespace FTPClient
                 MessageBox.Show("Please enter a new name.");
                 return;
             }
-
-            string newPath = Path.GetDirectoryName(remotePath) + "/" + newName;
-
             try
             {
+                if (remotePath.Contains("."))
+                {
+                    string extension = remotePath.Substring(remotePath.LastIndexOf("."));
+                    newName += extension;
+                }
+                string newPath = Path.GetDirectoryName(remotePath) + "/" + newName;
+
                 client.Rename(remotePath, newPath);
                 MessageBox.Show("Rename completed!");
 
@@ -302,14 +344,58 @@ namespace FTPClient
             }
             catch (FtpCommandException ex)
             {
-                MessageBox.Show($"Error renaming file or directory: {ex.Message}");
+                MessageBox.Show($"Error renaming: {ex.Message}");
             }
         }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (client != null && client.IsConnected)
             {
+                client.Disconnect();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            TreeNode localParentNode = localTreeView.SelectedNode;
+            if (localParentNode != null)
+            {
+                localParentNode.Nodes.Clear();
+                LoadLocalDirectoryNodes(localParentNode);
+                LoadLocalTreeView();
+            }
+            TreeNode remoteParentNode = remoteTreeView.SelectedNode;
+            if (remoteParentNode != null)
+            {
+                remoteParentNode.Nodes.Clear();
+                LoadRemoteDirectoryNodes(remoteParentNode);
+            }
+        }
+        private void EnableButton(bool connected)
+        {
+            if (connected)
+            {
+                btnConnect.Visible = false;
+                btnDisconnect.Visible = true;
+                pnConnect.Visible = false;
+                pnFeatures.Visible = true;
+                btnRefresh.Location = new Point(939, 43);
+            }
+            else
+            {
+                btnConnect.Visible = true;
+                btnDisconnect.Visible = false;
+                pnConnect.Visible = true;
+                pnFeatures.Visible = false;
+                btnRefresh.Location = new Point(500, 43);
+            }
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            if (client != null && client.IsConnected)
+            {
+                EnableButton(false);
                 client.Disconnect();
             }
         }
