@@ -1,0 +1,119 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0-windows7.0": {
+      "FluentFTP/50.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/FluentFTP.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/FluentFTP.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FluentFTP/50.0.1": {
+      "sha512": "iNG+wYZcBoOQmnrgR0EzUU1KHy3mOG/osGcd+bZMDcTC45tTLR45o0uInKd74t669d1JhGHBTzZKpSQOxBSisg==",
+      "type": "package",
+      "path": "fluentftp/50.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "fluentftp.50.0.1.nupkg.sha512",
+        "fluentftp.nuspec",
+        "lib/net462/FluentFTP.dll",
+        "lib/net462/FluentFTP.xml",
+        "lib/net472/FluentFTP.dll",
+        "lib/net472/FluentFTP.xml",
+        "lib/net5.0/FluentFTP.dll",
+        "lib/net5.0/FluentFTP.xml",
+        "lib/net6.0/FluentFTP.dll",
+        "lib/net6.0/FluentFTP.xml",
+        "lib/netstandard2.0/FluentFTP.dll",
+        "lib/netstandard2.0/FluentFTP.xml",
+        "lib/netstandard2.1/FluentFTP.dll",
+        "lib/netstandard2.1/FluentFTP.xml",
+        "logo-nuget.png"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0-windows7.0": [
+      "FluentFTP >= 50.0.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\FTPClient\\FTPClient\\FTPClient.csproj",
+      "projectName": "FTPClient",
+      "projectPath": "C:\\Users\\Admin\\source\\repos\\FTPClient\\FTPClient\\FTPClient.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\source\\repos\\FTPClient\\FTPClient\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
+        "dependencies": {
+          "FluentFTP": {
+            "target": "Package",
+            "version": "[50.0.1, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
