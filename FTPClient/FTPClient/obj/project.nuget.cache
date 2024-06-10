@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TXTxGnNs25uULoXzr9e2Ta/W0jyynAxXy0KMwHYMVE4sPF6UX8Ad08jFYXv2kK+fMdiha00bEaGghQbppto9CQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\FTPClient\\FTPClient\\FTPClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\fluentftp\\50.0.1\\fluentftp.50.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
