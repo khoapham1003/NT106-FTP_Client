@@ -17,209 +17,351 @@
 
         private void InitializeComponent()
         {
-            this.txtHost = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnConnect = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.localTreeView = new System.Windows.Forms.TreeView();
-            this.remoteTreeView = new System.Windows.Forms.TreeView();
-            this.txtLocalPath = new System.Windows.Forms.TextBox();
-            this.txtRemotePath = new System.Windows.Forms.TextBox();
-            this.btnDownload = new System.Windows.Forms.Button();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnRename = new System.Windows.Forms.Button();
-            this.txtNewName = new System.Windows.Forms.TextBox();
-            this.btnCreateDirectory = new System.Windows.Forms.Button();
-            this.txtNewDir = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.SuspendLayout();
+            txtHost = new TextBox();
+            txtUsername = new TextBox();
+            txtPassword = new TextBox();
+            btnConnect = new Button();
+            localTreeView = new TreeView();
+            txtLocalPath = new TextBox();
+            remoteTreeView = new TreeView();
+            txtRemotePath = new TextBox();
+            btnDownload = new Button();
+            btnUpload = new Button();
+            btnDelete = new Button();
+            btnRename = new Button();
+            txtNewName = new TextBox();
+            btnCreateDirectory = new Button();
+            txtNewDir = new TextBox();
+            btnRefresh = new Button();
+            btnDisconnect = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            lvLocal = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            lvRemote = new ListView();
+            columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
+            columnHeader7 = new ColumnHeader();
+            columnHeader8 = new ColumnHeader();
+            pnConnect = new Panel();
+            pnFeatures = new Panel();
+            pnConnect.SuspendLayout();
+            pnFeatures.SuspendLayout();
+            SuspendLayout();
             // 
             // txtHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(12, 12);
-            this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(200, 20);
-            this.txtHost.TabIndex = 0;
-            this.txtHost.Text = "127.0.0.1";
+            txtHost.Location = new Point(75, 7);
+            txtHost.Margin = new Padding(4);
+            txtHost.Name = "txtHost";
+            txtHost.Size = new Size(233, 25);
+            txtHost.TabIndex = 0;
+            txtHost.Text = "127.0.0.1";
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(12, 38);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(200, 20);
-            this.txtUsername.TabIndex = 1;
-            this.txtUsername.Text = "test1";
+            txtUsername.Location = new Point(75, 46);
+            txtUsername.Margin = new Padding(4);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(233, 25);
+            txtUsername.TabIndex = 1;
+            txtUsername.Text = "test1";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(12, 64);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(200, 20);
-            this.txtPassword.TabIndex = 2;
-            this.txtPassword.Text = "1234";
-            this.txtPassword.UseSystemPasswordChar = true;
+            txtPassword.Location = new Point(74, 84);
+            txtPassword.Margin = new Padding(4);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(233, 25);
+            txtPassword.TabIndex = 2;
+            txtPassword.Text = "1234";
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(218, 12);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(75, 23);
-            this.btnConnect.TabIndex = 3;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Location = new System.Drawing.Point(12, 100);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.localTreeView);
-            this.splitContainer1.Panel1.Controls.Add(this.txtLocalPath);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.remoteTreeView);
-            this.splitContainer1.Panel2.Controls.Add(this.txtRemotePath);
-            this.splitContainer1.Size = new System.Drawing.Size(450, 338);
-            this.splitContainer1.SplitterDistance = 169;
-            this.splitContainer1.TabIndex = 4;
+            btnConnect.Location = new Point(14, 39);
+            btnConnect.Margin = new Padding(4);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(140, 50);
+            btnConnect.TabIndex = 3;
+            btnConnect.Text = "Connect";
+            btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += btnConnect_Click;
             // 
             // localTreeView
             // 
-            this.localTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.localTreeView.Location = new System.Drawing.Point(0, 0);
-            this.localTreeView.Name = "localTreeView";
-            this.localTreeView.Size = new System.Drawing.Size(450, 149);
-            this.localTreeView.TabIndex = 4;
-            this.localTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.localTreeView_BeforeExpand);
-            this.localTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.localTreeView_AfterSelect);
-            // 
-            // remoteTreeView
-            // 
-            this.remoteTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.remoteTreeView.Location = new System.Drawing.Point(0, 0);
-            this.remoteTreeView.Name = "remoteTreeView";
-            this.remoteTreeView.Size = new System.Drawing.Size(450, 165);
-            this.remoteTreeView.TabIndex = 4;
-            this.remoteTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.remoteTreeView_BeforeExpand);
-            this.remoteTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.remoteTreeView_AfterSelect);
+            localTreeView.Location = new Point(12, 165);
+            localTreeView.Margin = new Padding(4);
+            localTreeView.Name = "localTreeView";
+            localTreeView.Size = new Size(530, 200);
+            localTreeView.TabIndex = 4;
+            localTreeView.BeforeExpand += localTreeView_BeforeExpand;
+            localTreeView.AfterSelect += localTreeView_AfterSelect;
             // 
             // txtLocalPath
             // 
-            this.txtLocalPath.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtLocalPath.Location = new System.Drawing.Point(0, 149);
-            this.txtLocalPath.Name = "txtLocalPath";
-            this.txtLocalPath.Size = new System.Drawing.Size(450, 20);
-            this.txtLocalPath.TabIndex = 5;
+            txtLocalPath.Location = new Point(14, 132);
+            txtLocalPath.Margin = new Padding(4);
+            txtLocalPath.Name = "txtLocalPath";
+            txtLocalPath.ReadOnly = true;
+            txtLocalPath.Size = new Size(526, 25);
+            txtLocalPath.TabIndex = 5;
+            // 
+            // remoteTreeView
+            // 
+            remoteTreeView.Location = new Point(551, 165);
+            remoteTreeView.Margin = new Padding(4);
+            remoteTreeView.Name = "remoteTreeView";
+            remoteTreeView.Size = new Size(530, 200);
+            remoteTreeView.TabIndex = 6;
+            remoteTreeView.BeforeExpand += remoteTreeView_BeforeExpand;
+            remoteTreeView.AfterSelect += remoteTreeView_AfterSelect;
             // 
             // txtRemotePath
             // 
-            this.txtRemotePath.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtRemotePath.Location = new System.Drawing.Point(0, 145);
-            this.txtRemotePath.Name = "txtRemotePath";
-            this.txtRemotePath.Size = new System.Drawing.Size(450, 20);
-            this.txtRemotePath.TabIndex = 5;
+            txtRemotePath.Location = new Point(551, 132);
+            txtRemotePath.Margin = new Padding(4);
+            txtRemotePath.Name = "txtRemotePath";
+            txtRemotePath.ReadOnly = true;
+            txtRemotePath.Size = new Size(530, 25);
+            txtRemotePath.TabIndex = 7;
             // 
             // btnDownload
             // 
-            this.btnDownload.Location = new System.Drawing.Point(468, 100);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(75, 23);
-            this.btnDownload.TabIndex = 6;
-            this.btnDownload.Text = "Download";
-            this.btnDownload.UseVisualStyleBackColor = true;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            btnDownload.Location = new Point(22, 11);
+            btnDownload.Margin = new Padding(4);
+            btnDownload.Name = "btnDownload";
+            btnDownload.Size = new Size(150, 40);
+            btnDownload.TabIndex = 8;
+            btnDownload.Text = "Download";
+            btnDownload.UseVisualStyleBackColor = true;
+            btnDownload.Click += btnDownload_Click;
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(468, 129);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpload.TabIndex = 7;
-            this.btnUpload.Text = "Upload";
-            this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            btnUpload.Location = new Point(22, 65);
+            btnUpload.Margin = new Padding(4);
+            btnUpload.Name = "btnUpload";
+            btnUpload.Size = new Size(150, 40);
+            btnUpload.TabIndex = 9;
+            btnUpload.Text = "Upload";
+            btnUpload.UseVisualStyleBackColor = true;
+            btnUpload.Click += btnUpload_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(468, 158);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            btnDelete.Location = new Point(191, 35);
+            btnDelete.Margin = new Padding(4);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(150, 40);
+            btnDelete.TabIndex = 10;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnRename
             // 
-            this.btnRename.Location = new System.Drawing.Point(468, 187);
-            this.btnRename.Name = "btnRename";
-            this.btnRename.Size = new System.Drawing.Size(75, 23);
-            this.btnRename.TabIndex = 9;
-            this.btnRename.Text = "Rename";
-            this.btnRename.UseVisualStyleBackColor = true;
-            this.btnRename.Click += new System.EventHandler(this.btnRename_Click);
+            btnRename.Location = new Point(365, 65);
+            btnRename.Margin = new Padding(4);
+            btnRename.Name = "btnRename";
+            btnRename.Size = new Size(150, 40);
+            btnRename.TabIndex = 11;
+            btnRename.Text = "Rename";
+            btnRename.UseVisualStyleBackColor = true;
+            btnRename.Click += btnRename_Click;
             // 
             // txtNewName
             // 
-            this.txtNewName.Location = new System.Drawing.Point(549, 189);
-            this.txtNewName.Name = "txtNewName";
-            this.txtNewName.Size = new System.Drawing.Size(100, 20);
-            this.txtNewName.TabIndex = 10;
+            txtNewName.Location = new Point(523, 15);
+            txtNewName.Margin = new Padding(4);
+            txtNewName.Name = "txtNewName";
+            txtNewName.Size = new Size(164, 25);
+            txtNewName.TabIndex = 12;
             // 
             // btnCreateDirectory
             // 
-            this.btnCreateDirectory.Location = new System.Drawing.Point(468, 216);
-            this.btnCreateDirectory.Name = "btnCreateDirectory";
-            this.btnCreateDirectory.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateDirectory.TabIndex = 11;
-            this.btnCreateDirectory.Text = "Create Dir";
-            this.btnCreateDirectory.UseVisualStyleBackColor = true;
-            this.btnCreateDirectory.Click += new System.EventHandler(this.btnCreateDirectory_Click);
+            btnCreateDirectory.Location = new Point(365, 6);
+            btnCreateDirectory.Margin = new Padding(4);
+            btnCreateDirectory.Name = "btnCreateDirectory";
+            btnCreateDirectory.Size = new Size(150, 40);
+            btnCreateDirectory.TabIndex = 13;
+            btnCreateDirectory.Text = "Create Dir";
+            btnCreateDirectory.UseVisualStyleBackColor = true;
+            btnCreateDirectory.Click += btnCreateDirectory_Click;
             // 
             // txtNewDir
             // 
-            this.txtNewDir.Location = new System.Drawing.Point(549, 218);
-            this.txtNewDir.Name = "txtNewDir";
-            this.txtNewDir.Size = new System.Drawing.Size(100, 20);
-            this.txtNewDir.TabIndex = 12;
+            txtNewDir.Location = new Point(523, 75);
+            txtNewDir.Margin = new Padding(4);
+            txtNewDir.Name = "txtNewDir";
+            txtNewDir.Size = new Size(164, 25);
+            txtNewDir.TabIndex = 14;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(500, 43);
+            btnRefresh.Margin = new Padding(4);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(142, 49);
+            btnRefresh.TabIndex = 3;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // btnDisconnect
+            // 
+            btnDisconnect.Location = new Point(14, 38);
+            btnDisconnect.Margin = new Padding(4);
+            btnDisconnect.Name = "btnDisconnect";
+            btnDisconnect.Size = new Size(140, 50);
+            btnDisconnect.TabIndex = 3;
+            btnDisconnect.Text = "Disconnect";
+            btnDisconnect.UseVisualStyleBackColor = true;
+            btnDisconnect.Visible = false;
+            btnDisconnect.Click += btnDisconnect_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 17);
+            label1.TabIndex = 15;
+            label1.Text = "Host:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 49);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 17);
+            label2.TabIndex = 15;
+            label2.Text = "Username:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 87);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 17);
+            label3.TabIndex = 15;
+            label3.Text = "Password:";
+            // 
+            // lvLocal
+            // 
+            lvLocal.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
+            lvLocal.Location = new Point(12, 372);
+            lvLocal.Name = "lvLocal";
+            lvLocal.Size = new Size(530, 280);
+            lvLocal.TabIndex = 16;
+            lvLocal.UseCompatibleStateImageBehavior = false;
+            lvLocal.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Filename";
+            columnHeader1.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Filesize";
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Filetype";
+            columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Last modified";
+            columnHeader4.Width = 150;
+            // 
+            // lvRemote
+            // 
+            lvRemote.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader8 });
+            lvRemote.Location = new Point(551, 372);
+            lvRemote.Name = "lvRemote";
+            lvRemote.Size = new Size(530, 280);
+            lvRemote.TabIndex = 17;
+            lvRemote.UseCompatibleStateImageBehavior = false;
+            lvRemote.View = View.Details;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Filename";
+            columnHeader5.Width = 200;
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "Filesize";
+            // 
+            // columnHeader7
+            // 
+            columnHeader7.Text = "Filetype";
+            columnHeader7.Width = 100;
+            // 
+            // columnHeader8
+            // 
+            columnHeader8.Text = "Last modified";
+            columnHeader8.Width = 150;
+            // 
+            // pnConnect
+            // 
+            pnConnect.Controls.Add(label1);
+            pnConnect.Controls.Add(txtHost);
+            pnConnect.Controls.Add(txtUsername);
+            pnConnect.Controls.Add(label3);
+            pnConnect.Controls.Add(txtPassword);
+            pnConnect.Controls.Add(label2);
+            pnConnect.Location = new Point(171, 10);
+            pnConnect.Name = "pnConnect";
+            pnConnect.Size = new Size(323, 115);
+            pnConnect.TabIndex = 18;
+            // 
+            // pnFeatures
+            // 
+            pnFeatures.Controls.Add(btnDownload);
+            pnFeatures.Controls.Add(txtNewDir);
+            pnFeatures.Controls.Add(btnCreateDirectory);
+            pnFeatures.Controls.Add(txtNewName);
+            pnFeatures.Controls.Add(btnRename);
+            pnFeatures.Controls.Add(btnDelete);
+            pnFeatures.Controls.Add(btnUpload);
+            pnFeatures.Location = new Point(213, 9);
+            pnFeatures.Name = "pnFeatures";
+            pnFeatures.Size = new Size(691, 116);
+            pnFeatures.TabIndex = 19;
+            pnFeatures.Visible = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 450);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.txtNewDir);
-            this.Controls.Add(this.btnCreateDirectory);
-            this.Controls.Add(this.txtNewName);
-            this.Controls.Add(this.btnRename);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpload);
-            this.Controls.Add(this.btnDownload);
-            this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.txtHost);
-            this.Name = "Form1";
-            this.Text = "FTP Client";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1095, 667);
+            Controls.Add(pnFeatures);
+            Controls.Add(pnConnect);
+            Controls.Add(lvRemote);
+            Controls.Add(lvLocal);
+            Controls.Add(localTreeView);
+            Controls.Add(txtLocalPath);
+            Controls.Add(remoteTreeView);
+            Controls.Add(txtRemotePath);
+            Controls.Add(btnRefresh);
+            Controls.Add(btnDisconnect);
+            Controls.Add(btnConnect);
+            Margin = new Padding(4);
+            Name = "Form1";
+            Text = "FTP Client";
+            pnConnect.ResumeLayout(false);
+            pnConnect.PerformLayout();
+            pnFeatures.ResumeLayout(false);
+            pnFeatures.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -228,7 +370,6 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView localTreeView;
         private System.Windows.Forms.TreeView remoteTreeView;
         private System.Windows.Forms.TextBox txtLocalPath;
@@ -240,5 +381,22 @@
         private System.Windows.Forms.TextBox txtNewName;
         private System.Windows.Forms.Button btnCreateDirectory;
         private System.Windows.Forms.TextBox txtNewDir;
+        private Button btnRefresh;
+        private Button btnDisconnect;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private ListView lvLocal;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ListView lvRemote;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
+        private ColumnHeader columnHeader8;
+        private Panel pnConnect;
+        private Panel pnFeatures;
     }
 }

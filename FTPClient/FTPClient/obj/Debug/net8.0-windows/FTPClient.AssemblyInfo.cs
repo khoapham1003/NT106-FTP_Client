@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FTPClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+934323206aae2047853de69e988cc2182a50c72d")]
 [assembly: System.Reflection.AssemblyProductAttribute("FTPClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FTPClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
