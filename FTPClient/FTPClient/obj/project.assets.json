@@ -50,24 +50,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ABC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Hoc tap\\hocky6\\NT106\\Đồ án\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
+      "projectUniqueName": "C:\\NT106\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
       "projectName": "FTPClient",
-      "projectPath": "E:\\Hoc tap\\hocky6\\NT106\\Đồ án\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
-      "packagesPath": "C:\\Users\\ABC\\.nuget\\packages\\",
-      "outputPath": "E:\\Hoc tap\\hocky6\\NT106\\Đồ án\\NT106-FTP_Client\\FTPClient\\FTPClient\\obj\\",
+      "projectPath": "C:\\NT106\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\NT106\\NT106-FTP_Client\\FTPClient\\FTPClient\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ABC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -87,11 +82,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -122,7 +112,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
