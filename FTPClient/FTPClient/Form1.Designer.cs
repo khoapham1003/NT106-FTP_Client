@@ -195,7 +195,7 @@
             // 
             // txtNewDir
             // 
-            txtNewDir.Location = new Point(523, 12);
+            txtNewDir.Location = new Point(523, 15);
             txtNewDir.Margin = new Padding(4);
             txtNewDir.Name = "txtNewDir";
             txtNewDir.Size = new Size(164, 23);
