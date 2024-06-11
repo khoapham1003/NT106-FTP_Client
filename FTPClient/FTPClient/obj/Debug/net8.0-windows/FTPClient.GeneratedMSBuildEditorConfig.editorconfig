@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FTPClient
-build_property.ProjectDir = E:\Hoc tap\hocky6\NT106\Đồ án\NT106-FTP_Client\FTPClient\FTPClient\
+build_property.ProjectDir = C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

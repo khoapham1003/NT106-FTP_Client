@@ -37,3 +37,23 @@ E:\Hoc tap\hocky6\NT106\Đồ án\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug
 E:\Hoc tap\hocky6\NT106\Đồ án\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.csproj.Up2Date
 E:\Hoc tap\hocky6\NT106\Đồ án\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.genruntimeconfig.cache
 E:\Hoc tap\hocky6\NT106\Đồ án\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\ref\FTPClient.dll
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FTPClient.exe
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FTPClient.deps.json
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FTPClient.runtimeconfig.json
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FTPClient.dll
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FTPClient.pdb
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\bin\Debug\net8.0-windows\FluentFTP.dll
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.csproj.AssemblyReference.cache
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.Form1.resources
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.csproj.GenerateResource.cache
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.AssemblyInfoInputs.cache
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.AssemblyInfo.cs
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.csproj.CoreCompileInputs.cache
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.sourcelink.json
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.csproj.CopyComplete
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.dll
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\refint\FTPClient.dll
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.pdb
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\FTPClient.genruntimeconfig.cache
+C:\NT106\NT106-FTP_Client\FTPClient\FTPClient\obj\Debug\net8.0-windows\ref\FTPClient.dll

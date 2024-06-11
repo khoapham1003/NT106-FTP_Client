@@ -55,38 +55,38 @@
             // 
             // txtHost
             // 
-            txtHost.Location = new Point(75, 7);
+            txtHost.Location = new Point(75, 6);
             txtHost.Margin = new Padding(4);
             txtHost.Name = "txtHost";
-            txtHost.Size = new Size(233, 25);
+            txtHost.Size = new Size(233, 23);
             txtHost.TabIndex = 0;
             txtHost.Text = "127.0.0.1";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(75, 46);
+            txtUsername.Location = new Point(75, 41);
             txtUsername.Margin = new Padding(4);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(233, 25);
+            txtUsername.Size = new Size(233, 23);
             txtUsername.TabIndex = 1;
             txtUsername.Text = "test1";
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(74, 84);
+            txtPassword.Location = new Point(74, 74);
             txtPassword.Margin = new Padding(4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(233, 25);
+            txtPassword.Size = new Size(233, 23);
             txtPassword.TabIndex = 2;
             txtPassword.Text = "1234";
             txtPassword.UseSystemPasswordChar = true;
             // 
             // btnConnect
             // 
-            btnConnect.Location = new Point(14, 39);
+            btnConnect.Location = new Point(14, 34);
             btnConnect.Margin = new Padding(4);
             btnConnect.Name = "btnConnect";
-            btnConnect.Size = new Size(140, 50);
+            btnConnect.Size = new Size(140, 44);
             btnConnect.TabIndex = 3;
             btnConnect.Text = "Connect";
             btnConnect.UseVisualStyleBackColor = true;
@@ -94,48 +94,48 @@
             // 
             // localTreeView
             // 
-            localTreeView.Location = new Point(12, 165);
+            localTreeView.Location = new Point(12, 146);
             localTreeView.Margin = new Padding(4);
             localTreeView.Name = "localTreeView";
-            localTreeView.Size = new Size(530, 200);
+            localTreeView.Size = new Size(530, 177);
             localTreeView.TabIndex = 4;
             localTreeView.BeforeExpand += localTreeView_BeforeExpand;
             localTreeView.AfterSelect += localTreeView_AfterSelect;
             // 
             // txtLocalPath
             // 
-            txtLocalPath.Location = new Point(14, 132);
+            txtLocalPath.Location = new Point(14, 116);
             txtLocalPath.Margin = new Padding(4);
             txtLocalPath.Name = "txtLocalPath";
             txtLocalPath.ReadOnly = true;
-            txtLocalPath.Size = new Size(526, 25);
+            txtLocalPath.Size = new Size(526, 23);
             txtLocalPath.TabIndex = 5;
             // 
             // remoteTreeView
             // 
-            remoteTreeView.Location = new Point(551, 165);
+            remoteTreeView.Location = new Point(551, 146);
             remoteTreeView.Margin = new Padding(4);
             remoteTreeView.Name = "remoteTreeView";
-            remoteTreeView.Size = new Size(530, 200);
+            remoteTreeView.Size = new Size(530, 177);
             remoteTreeView.TabIndex = 6;
             remoteTreeView.BeforeExpand += remoteTreeView_BeforeExpand;
             remoteTreeView.AfterSelect += remoteTreeView_AfterSelect;
             // 
             // txtRemotePath
             // 
-            txtRemotePath.Location = new Point(551, 132);
+            txtRemotePath.Location = new Point(551, 116);
             txtRemotePath.Margin = new Padding(4);
             txtRemotePath.Name = "txtRemotePath";
             txtRemotePath.ReadOnly = true;
-            txtRemotePath.Size = new Size(530, 25);
+            txtRemotePath.Size = new Size(530, 23);
             txtRemotePath.TabIndex = 7;
             // 
             // btnDownload
             // 
-            btnDownload.Location = new Point(22, 11);
+            btnDownload.Location = new Point(22, 10);
             btnDownload.Margin = new Padding(4);
             btnDownload.Name = "btnDownload";
-            btnDownload.Size = new Size(150, 40);
+            btnDownload.Size = new Size(150, 35);
             btnDownload.TabIndex = 8;
             btnDownload.Text = "Download";
             btnDownload.UseVisualStyleBackColor = true;
@@ -143,10 +143,10 @@
             // 
             // btnUpload
             // 
-            btnUpload.Location = new Point(22, 65);
+            btnUpload.Location = new Point(22, 57);
             btnUpload.Margin = new Padding(4);
             btnUpload.Name = "btnUpload";
-            btnUpload.Size = new Size(150, 40);
+            btnUpload.Size = new Size(150, 35);
             btnUpload.TabIndex = 9;
             btnUpload.Text = "Upload";
             btnUpload.UseVisualStyleBackColor = true;
@@ -154,10 +154,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(191, 35);
+            btnDelete.Location = new Point(191, 31);
             btnDelete.Margin = new Padding(4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(150, 40);
+            btnDelete.Size = new Size(150, 35);
             btnDelete.TabIndex = 10;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -165,10 +165,10 @@
             // 
             // btnRename
             // 
-            btnRename.Location = new Point(365, 65);
+            btnRename.Location = new Point(365, 57);
             btnRename.Margin = new Padding(4);
             btnRename.Name = "btnRename";
-            btnRename.Size = new Size(150, 40);
+            btnRename.Size = new Size(150, 35);
             btnRename.TabIndex = 11;
             btnRename.Text = "Rename";
             btnRename.UseVisualStyleBackColor = true;
@@ -176,18 +176,18 @@
             // 
             // txtNewName
             // 
-            txtNewName.Location = new Point(523, 15);
+            txtNewName.Location = new Point(523, 64);
             txtNewName.Margin = new Padding(4);
             txtNewName.Name = "txtNewName";
-            txtNewName.Size = new Size(164, 25);
+            txtNewName.Size = new Size(164, 23);
             txtNewName.TabIndex = 12;
             // 
             // btnCreateDirectory
             // 
-            btnCreateDirectory.Location = new Point(365, 6);
+            btnCreateDirectory.Location = new Point(365, 5);
             btnCreateDirectory.Margin = new Padding(4);
             btnCreateDirectory.Name = "btnCreateDirectory";
-            btnCreateDirectory.Size = new Size(150, 40);
+            btnCreateDirectory.Size = new Size(150, 35);
             btnCreateDirectory.TabIndex = 13;
             btnCreateDirectory.Text = "Create Dir";
             btnCreateDirectory.UseVisualStyleBackColor = true;
@@ -195,18 +195,18 @@
             // 
             // txtNewDir
             // 
-            txtNewDir.Location = new Point(523, 75);
+            txtNewDir.Location = new Point(523, 12);
             txtNewDir.Margin = new Padding(4);
             txtNewDir.Name = "txtNewDir";
-            txtNewDir.Size = new Size(164, 25);
+            txtNewDir.Size = new Size(164, 23);
             txtNewDir.TabIndex = 14;
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(500, 43);
+            btnRefresh.Location = new Point(500, 38);
             btnRefresh.Margin = new Padding(4);
             btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(142, 49);
+            btnRefresh.Size = new Size(142, 43);
             btnRefresh.TabIndex = 3;
             btnRefresh.Text = "Refresh";
             btnRefresh.UseVisualStyleBackColor = true;
@@ -214,10 +214,10 @@
             // 
             // btnDisconnect
             // 
-            btnDisconnect.Location = new Point(14, 38);
+            btnDisconnect.Location = new Point(14, 34);
             btnDisconnect.Margin = new Padding(4);
             btnDisconnect.Name = "btnDisconnect";
-            btnDisconnect.Size = new Size(140, 50);
+            btnDisconnect.Size = new Size(140, 44);
             btnDisconnect.TabIndex = 3;
             btnDisconnect.Text = "Disconnect";
             btnDisconnect.UseVisualStyleBackColor = true;
@@ -227,39 +227,41 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 10);
+            label1.Location = new Point(3, 9);
             label1.Name = "label1";
-            label1.Size = new Size(38, 17);
+            label1.Size = new Size(35, 15);
             label1.TabIndex = 15;
             label1.Text = "Host:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 49);
+            label2.Location = new Point(3, 43);
             label2.Name = "label2";
-            label2.Size = new Size(70, 17);
+            label2.Size = new Size(63, 15);
             label2.TabIndex = 15;
             label2.Text = "Username:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 87);
+            label3.Location = new Point(3, 77);
             label3.Name = "label3";
-            label3.Size = new Size(67, 17);
+            label3.Size = new Size(60, 15);
             label3.TabIndex = 15;
             label3.Text = "Password:";
             // 
             // lvLocal
             // 
             lvLocal.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
-            lvLocal.Location = new Point(12, 372);
+            lvLocal.Location = new Point(12, 328);
             lvLocal.Name = "lvLocal";
-            lvLocal.Size = new Size(530, 280);
+            lvLocal.Size = new Size(530, 248);
             lvLocal.TabIndex = 16;
             lvLocal.UseCompatibleStateImageBehavior = false;
             lvLocal.View = View.Details;
+            lvLocal.ItemActivate += lvLocal_ItemActivate;
+            lvLocal.SelectedIndexChanged += lvLocal_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
@@ -283,12 +285,15 @@
             // lvRemote
             // 
             lvRemote.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader8 });
-            lvRemote.Location = new Point(551, 372);
+            lvRemote.Location = new Point(551, 328);
             lvRemote.Name = "lvRemote";
-            lvRemote.Size = new Size(530, 280);
+            lvRemote.Size = new Size(530, 248);
             lvRemote.TabIndex = 17;
             lvRemote.UseCompatibleStateImageBehavior = false;
             lvRemote.View = View.Details;
+            lvRemote.ItemActivate += lvRemote_ItemActivate;
+            lvRemote.SelectedIndexChanged += lvRemote_SelectedIndexChanged;
+            lvRemote.Click += lvRemote_Click;
             // 
             // columnHeader5
             // 
@@ -317,9 +322,9 @@
             pnConnect.Controls.Add(label3);
             pnConnect.Controls.Add(txtPassword);
             pnConnect.Controls.Add(label2);
-            pnConnect.Location = new Point(171, 10);
+            pnConnect.Location = new Point(171, 9);
             pnConnect.Name = "pnConnect";
-            pnConnect.Size = new Size(323, 115);
+            pnConnect.Size = new Size(323, 101);
             pnConnect.TabIndex = 18;
             // 
             // pnFeatures
@@ -331,17 +336,17 @@
             pnFeatures.Controls.Add(btnRename);
             pnFeatures.Controls.Add(btnDelete);
             pnFeatures.Controls.Add(btnUpload);
-            pnFeatures.Location = new Point(213, 9);
+            pnFeatures.Location = new Point(213, 8);
             pnFeatures.Name = "pnFeatures";
-            pnFeatures.Size = new Size(691, 116);
+            pnFeatures.Size = new Size(691, 102);
             pnFeatures.TabIndex = 19;
             pnFeatures.Visible = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1095, 667);
+            ClientSize = new Size(1095, 589);
             Controls.Add(pnFeatures);
             Controls.Add(pnConnect);
             Controls.Add(lvRemote);
@@ -356,6 +361,7 @@
             Margin = new Padding(4);
             Name = "Form1";
             Text = "FTP Client";
+            Load += Form1_Load;
             pnConnect.ResumeLayout(false);
             pnConnect.PerformLayout();
             pnFeatures.ResumeLayout(false);

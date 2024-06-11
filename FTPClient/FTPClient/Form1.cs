@@ -12,12 +12,14 @@ namespace FTPClient
     public partial class Form1 : Form
     {
         private FtpClient client;
+        private string selectedLocalPath;
+        private string selectedRemotePath;
+
         public Form1()
         {
             InitializeComponent();
             LoadLocalTreeView();
         }
-
         private void LoadLocalTreeView()
         {
             localTreeView.Nodes.Clear();
@@ -87,7 +89,9 @@ namespace FTPClient
         private void localTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             txtLocalPath.Text = localTreeView.SelectedNode.FullPath;
+            LoadLocalListViewItems(localTreeView.SelectedNode.FullPath);
         }
+
         private void remoteTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node.Nodes[0].Text == "Loading...")
@@ -99,6 +103,94 @@ namespace FTPClient
         private void remoteTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             txtRemotePath.Text = remoteTreeView.SelectedNode.FullPath;
+            LoadRemoteListViewItems(remoteTreeView.SelectedNode.FullPath);
+        }
+
+        private void LoadRemoteListViewItems(string path)
+        {
+            lvRemote.Items.Clear();
+
+            if (path != "/")
+            {
+                ListViewItem parentItem = new ListViewItem("...");
+                parentItem.SubItems.Add("");
+                parentItem.SubItems.Add("");
+                parentItem.SubItems.Add("");
+                lvRemote.Items.Add(parentItem);
+            }
+
+            try
+            {
+                foreach (var item in client.GetListing(path))
+                {
+                    ListViewItem listItem = new ListViewItem(item.Name);
+                    if (item.Type == FtpObjectType.Directory)
+                    {
+                        listItem.SubItems.Add(""); // No size for directories
+                        listItem.SubItems.Add("Folder");
+                        listItem.SubItems.Add(item.Modified.ToString());
+                    }
+                    else
+                    {
+                        listItem.SubItems.Add(item.Size.ToString());
+                        listItem.SubItems.Add("File");
+                        listItem.SubItems.Add(item.Modified.ToString());
+                    }
+                    lvRemote.Items.Add(listItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadLocalListViewItems(string path)
+        {
+            lvLocal.Items.Clear();
+            if (path != "C:\\")
+            {
+                ListViewItem parentItem = new ListViewItem("...");
+                parentItem.SubItems.Add("");
+                parentItem.SubItems.Add("");
+                parentItem.SubItems.Add("");
+                lvLocal.Items.Add(parentItem);
+            }
+            try
+            {
+                string[] directories = Directory.GetDirectories(path);
+                string[] files = Directory.GetFiles(path);
+
+                foreach (string directory in directories)
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(directory);
+                    string directoryName = dirInfo.Name;
+
+                    ListViewItem item = new ListViewItem(directoryName);
+                    item.SubItems.Add(""); // No size for directories
+                    item.SubItems.Add("Folder");
+                    item.SubItems.Add(dirInfo.LastWriteTime.ToString());
+
+                    lvLocal.Items.Add(item);
+                }
+
+                foreach (string file in files)
+                {
+                    FileInfo fileInfo = new FileInfo(file);
+                    string fileName = fileInfo.Name;
+
+                    ListViewItem item = new ListViewItem(fileName);
+                    item.SubItems.Add(fileInfo.Length.ToString());
+                    item.SubItems.Add("File");
+                    item.SubItems.Add(fileInfo.LastWriteTime.ToString());
+
+                    lvLocal.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -138,8 +230,10 @@ namespace FTPClient
                 return;
             }
 
-            string remotePath = remoteTreeView.SelectedNode.FullPath;
+            string remotePath = selectedRemotePath ?? remoteTreeView.SelectedNode?.FullPath;
+
             string localPath = localTreeView.SelectedNode.FullPath;
+
 
             try
             {
@@ -189,8 +283,8 @@ namespace FTPClient
                 MessageBox.Show("Please select a destination folder on the FTP server.");
                 return;
             }
+            string localPath = selectedLocalPath ?? localTreeView.SelectedNode?.FullPath;
 
-            string localPath = localTreeView.SelectedNode.FullPath;
             string remotePath = remoteTreeView.SelectedNode.FullPath;
             try
             {
@@ -212,6 +306,7 @@ namespace FTPClient
                 {
                     parentNode.Nodes.Clear();
                     LoadRemoteDirectoryNodes(parentNode);
+                    LoadRemoteListViewItems(parentNode.FullPath);
                 }
             }
             catch (FtpCommandException ex)
@@ -263,16 +358,11 @@ namespace FTPClient
                 return;
             }
 
-            string remotePath = remoteTreeView.SelectedNode.FullPath;
-
+            string remotePath = selectedRemotePath ?? remoteTreeView.SelectedNode?.FullPath;
+            
             try
             {
-                if (remoteTreeView.SelectedNode.Nodes.Count > 0)
-                {
-                    MessageBox.Show("Please delete all files and subdirectories before deleting this directory.");
-                    return;
-                }
-                else if (remotePath.Contains("."))
+                if (remotePath.Contains("."))
                 {
                     if (MessageBox.Show("Do you really want to delete this file?",
                        "Delete File",
@@ -303,7 +393,9 @@ namespace FTPClient
                     }
 
                 }
+
                 remoteTreeView.SelectedNode.Remove();
+
                 remoteTreeView.Refresh();
             }
             catch (FtpCommandException ex)
@@ -319,9 +411,8 @@ namespace FTPClient
                 return;
             }
 
-            string remotePath = remoteTreeView.SelectedNode.FullPath;
+            string remotePath = selectedRemotePath ?? remoteTreeView.SelectedNode?.FullPath;
             string newName = txtNewName.Text.Trim();
-
             if (string.IsNullOrEmpty(newName))
             {
                 MessageBox.Show("Please enter a new name.");
@@ -339,7 +430,15 @@ namespace FTPClient
                 client.Rename(remotePath, newPath);
                 MessageBox.Show("Rename completed!");
 
-                remoteTreeView.SelectedNode.Text = newName;
+                lvRemote.SelectedItems[0].Text = newName;
+
+                lvRemote.Refresh();
+                TreeNode parentNode = remoteTreeView.SelectedNode;
+                if (parentNode != null)
+                {
+                    parentNode.Nodes.Clear();
+                    LoadRemoteDirectoryNodes(parentNode);
+                }
                 txtNewName.Clear();
             }
             catch (FtpCommandException ex)
@@ -369,6 +468,8 @@ namespace FTPClient
             {
                 remoteParentNode.Nodes.Clear();
                 LoadRemoteDirectoryNodes(remoteParentNode);
+                LoadRemoteTreeView("/");
+                txtRemotePath.Text = "/";
             }
         }
         private void EnableButton(bool connected)
@@ -397,6 +498,118 @@ namespace FTPClient
             {
                 EnableButton(false);
                 client.Disconnect();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvLocal_ItemActivate(object sender, EventArgs e)
+        {
+            if (lvLocal.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lvLocal.SelectedItems[0];
+                string selectedPath = Path.Combine(txtLocalPath.Text, selectedItem.Text);
+
+                if (selectedItem.Text == "...")
+                {
+                    DirectoryInfo currentDir = new DirectoryInfo(txtLocalPath.Text);
+                    DirectoryInfo parentDir = currentDir.Parent;
+
+                    if (parentDir != null)
+                    {
+                        TreeNode[] nodes = localTreeView.Nodes.Find(parentDir.Name, true);
+                        if (nodes.Length > 0)
+                        {
+                            TreeNode selectedNode = nodes[0];
+                            localTreeView.SelectedNode = selectedNode;
+                            selectedNode.Expand();
+                        }
+
+                        LoadLocalListViewItems(parentDir.FullName);
+
+                        txtLocalPath.Text = parentDir.FullName;
+                    }
+                }
+                else if (Directory.Exists(selectedPath))
+                {
+                    TreeNode[] nodes = localTreeView.Nodes.Find(selectedItem.Text, true);
+                    if (nodes.Length > 0)
+                    {
+                        TreeNode selectedNode = nodes[0];
+                        localTreeView.SelectedNode = selectedNode;
+                        selectedNode.Expand();
+                    }
+
+                    LoadLocalListViewItems(selectedPath);
+
+                    txtLocalPath.Text = selectedPath;
+                }
+            }
+        }
+
+        private void lvLocal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvLocal.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lvLocal.SelectedItems[0];
+                selectedLocalPath = Path.Combine(txtLocalPath.Text, selectedItem.Text);
+            }
+            else
+            {
+                selectedLocalPath = null;
+            }
+        }
+
+        private void lvRemote_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvRemote_ItemActivate(object sender, EventArgs e)
+        {
+            if (lvRemote.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lvRemote.SelectedItems[0];
+                string selectedPath = txtRemotePath.Text.TrimEnd('/') + "/" + selectedItem.Text;
+
+                if (selectedItem.Text == "...")
+                {
+                    string parentPath = txtRemotePath.Text.TrimEnd('/');
+                    parentPath = parentPath.Substring(0, parentPath.LastIndexOf('/'));
+
+                    if (string.IsNullOrEmpty(parentPath))
+                    {
+                        parentPath = "/";
+                    }
+
+                    txtRemotePath.Text = parentPath;
+                    LoadRemoteListViewItems(parentPath);
+                }
+                else
+                {
+                    var item = client.GetListing(txtRemotePath.Text).FirstOrDefault(i => i.Name == selectedItem.Text);
+                    if (item != null && item.Type == FtpObjectType.Directory)
+                    {
+                        txtRemotePath.Text = selectedPath;
+                        LoadRemoteListViewItems(selectedPath);
+                    }
+                }
+            }
+        }
+
+        private void lvRemote_Click(object sender, EventArgs e)
+        {
+            if (lvRemote.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lvRemote.SelectedItems[0];
+                selectedRemotePath = Path.Combine(txtRemotePath.Text, selectedItem.Text);
+            }
+            else
+            {
+                selectedRemotePath = null;
             }
         }
     }
