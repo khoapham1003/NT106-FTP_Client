@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "iJ4KIpjvhAsCg/mopa0iLEjGyEE/9u64XjC2bOBHDf9PHa60QWsCXujJoIksAZfR6y+hUlltcf5LKRBRNJhC9A==",
+  "dgSpecHash": "GgUxhKcofrGiBodjXopoAhuAjL4u1/umdLK9BUPyBQxKlwoscYv2k3Dw/x2xTSvw81UDNX13CT1aOFmvtteQDw==",
   "success": true,
-  "projectFilePath": "E:\\Hoc tap\\hocky6\\NT106\\Đồ án\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
+  "projectFilePath": "C:\\NT106\\NT106-FTP_Client\\FTPClient\\FTPClient\\FTPClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ABC\\.nuget\\packages\\fluentftp\\50.0.1\\fluentftp.50.0.1.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\fluentftp\\50.0.1\\fluentftp.50.0.1.nupkg.sha512"
   ],
   "logs": []
 }
